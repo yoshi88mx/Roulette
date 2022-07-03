@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RouletteGame.Core.GamesContracts
+namespace RouletteGame.Core.GamesContracts;
+
+public interface IOddEvenGame
 {
-    public interface IOddEvenGame
-    {
-        Task<bool> IsMyLuckyDay(string number, int bet);
-    }
+    Task<bool> IsMyLuckyDay(string number, int bet);
 }

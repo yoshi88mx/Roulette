@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RouletteGame.Core.GamesContracts
+namespace RouletteGame.Core.GamesContracts;
+
+public interface ISingleNumerGame
 {
-    public interface ISingleNumerGame
-    {
-        bool IsMyLuckyDay(int number);
-    }
+    bool IsMyLuckyDay(int number);
 }

@@ -1,9 +1,8 @@
-﻿namespace RouletteGame.Core
+﻿namespace RouletteGame.Core;
+
+public enum WheelColor
 {
-    public enum WheelColor
-    {
-        Red,
-        Black,
-        Green
-    }
+    Red,
+    Black,
+    Green
 }
