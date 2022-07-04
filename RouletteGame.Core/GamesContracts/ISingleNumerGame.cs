@@ -8,5 +8,5 @@ namespace RouletteGame.Core.GamesContracts;
 
 public interface ISingleNumerGame
 {
-    bool IsMyLuckyDay(int number);
+    Task<bool> IsMyLuckyDay(string number, int bet);
 }

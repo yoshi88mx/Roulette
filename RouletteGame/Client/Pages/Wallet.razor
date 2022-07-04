@@ -1,0 +1,83 @@
+﻿@page "/wallet"
+
+<PageTitle>Wallet</PageTitle>
+
+<h1>Wallet</h1>
+
+<p>Instructions: Put your initial Coins</p>
+<p>Good Luck</p>
+
+@if (!IsComplete)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+   <label>Your Balance is: @Balance</label>
+   <br/>
+   <label>Put yours initial coins</label>
+   <input class="form-control" type="number" min=1 step=1 @bind-value="InitialCoins" />
+   <br />
+   <button class="btn btn-primary" @onclick="AddCoins" disabled="@CanAdd">Add</button>
+
+   <br/>
+   <br/>
+   <br/>
+   <label>History:</label>
+   <ul>
+        @foreach(var item in History)
+        {
+        <li>@item.Amonut / @(item.IsPositive ? "Add":"Remove") / @item.Date.ToString() </li>
+        }
+   </ul>
+
+
+}
+
+@code {
+
+    [Inject]
+    public IWalletCustomer WalletService { get; set; }
+
+    [Inject]
+    public IWalletHistoryCustomer WalletHistory { get; set; }
+
+    private bool IsComplete;
+
+    public int InitialCoins { get; set; }
+    public int Balance { get; set; }
+    public bool CanAdd { get; set; }
+    public List<WalletHistoryDto> History { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdateBalance();
+        await UpdateHistory();
+        await CanIAdd();
+        IsComplete = true;
+    }
+
+    async Task AddCoins()
+    {
+        await WalletService.AddInitialMoney(InitialCoins);
+        await UpdateBalance();
+        await CanIAdd();
+        await UpdateHistory();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    async Task CanIAdd()
+    {
+        CanAdd = !(await WalletService.CanAddInitialMoney());
+    }
+
+    async Task UpdateBalance()
+    {
+        Balance = await WalletService.GetAvailable();
+    }
+
+    async Task UpdateHistory()
+    {
+        History = await WalletHistory.GetHistory();
+    }
+}

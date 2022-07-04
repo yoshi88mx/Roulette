@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RouletteGame.Shared;
 
 namespace RouletteGame.Core.Wallet;
-
-public interface IWallet
+public interface IWalletHistoryCustomer
 {
-    public int Total { get; set; }
-    Task AddMoney(int mount);
-    Task RemoveMoney(int mount);
-
+    Task<List<WalletHistoryDto>> GetHistory();
+    Task Add(WalletHistory history);
 }

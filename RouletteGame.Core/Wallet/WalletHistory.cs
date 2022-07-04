@@ -10,4 +10,5 @@ public class WalletHistory
 {
     public int Amonut { get; set; }
     public bool IsPositive { get; set; }
+    public DateTime Date { get; set; } = DateTime.Now;
 }

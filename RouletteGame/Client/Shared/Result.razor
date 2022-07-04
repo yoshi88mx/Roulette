@@ -1,0 +1,11 @@
+﻿<div class="alert alert-@GameResult">
+  <strong>@Message</strong>
+</div>
+
+@code {
+    [Parameter]
+    public string GameResult { get; set; }
+
+    [Parameter]
+    public string Message { get; set; }
+}

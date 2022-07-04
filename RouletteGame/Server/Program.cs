@@ -11,8 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<Wheel>();
 builder.Services.AddSingleton<EvenOddService>();
 builder.Services.AddSingleton<RedBackService>();
+builder.Services.AddSingleton<SingleNumberService>();
 builder.Services.AddSingleton<IWallet, WalletService>();
-builder.Services.AddSingleton<IWalletCustomer, WalletService>();
+builder.Services.AddSingleton<IWalletCustomer, WalletCustomerService>();
+builder.Services.AddSingleton<IWalletHistoryCustomer, WalletHistoryCustomerService>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

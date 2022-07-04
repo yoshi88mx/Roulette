@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouletteGame.Server", "Roul
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouletteGame.Shared", "RouletteGame\Shared\RouletteGame.Shared.csproj", "{6F71DFF7-F08A-425E-B5C1-CDFF3765A4DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouletteGame.Core", "RouletteGame.Core\RouletteGame.Core.csproj", "{D47C1DB7-09B0-49A8-8BD6-2A9A0B7C4656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouletteGame.Core", "RouletteGame.Core\RouletteGame.Core.csproj", "{D47C1DB7-09B0-49A8-8BD6-2A9A0B7C4656}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

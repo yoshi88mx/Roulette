@@ -1,10 +1,10 @@
-﻿@page "/redblack"
+﻿@page "/singlenumber"
 
-<PageTitle>Red / Black Game</PageTitle>
+<PageTitle>Single Number Game</PageTitle>
 
-<h1>Red / Black Game</h1>
+<h1>Single Number Game</h1>
 
-<p>Instructions: Put your bet in the space below and choose a color</p>
+<p>Instructions: Put your bet in the space below and choose a number</p>
 <p>Good Luck</p>
 
 @if (!IsComplete)
@@ -18,10 +18,44 @@ else
    <label>Put your bet</label>
    <input class="form-control" type="number" max=@Balance min=1 step=1 @bind-value="Bet"/>
    <br />
-   <label>Choose your color</label>
-   <select class="form-select" @bind="Color">
-       <option>Black</option>
-       <option>Red</option>
+   <label>Choose your Number</label>
+   <select class="form-select" @bind="Number">
+       <option>2</option>
+       <option>3</option>
+       <option>4</option>
+       <option>5</option>
+       <option>6</option>
+       <option>7</option>
+       <option>8</option>
+       <option>9</option>
+       <option>10</option>
+       <option>11</option>
+       <option>12</option>
+       <option>13</option>
+       <option>14</option>
+       <option>15</option>
+       <option>16</option>
+       <option>17</option>
+       <option>18</option>
+       <option>19</option>
+       <option>20</option>
+       <option>21</option>
+       <option>22</option>
+       <option>23</option>
+       <option>24</option>
+       <option>25</option>
+       <option>26</option>
+       <option>27</option>
+       <option>28</option>
+       <option>29</option>
+       <option>30</option>
+       <option>31</option>
+       <option>32</option>
+       <option>33</option>
+       <option>34</option>
+       <option>35</option>
+       <option>36</option>
+
    </select>
    <br />
    <button class="btn btn-primary" @onclick="IsMyLuckyDay" disabled="@CanPlay">Play</button>
@@ -35,14 +69,14 @@ else
 @code {
 
     [Inject]
-    public IRedBlackGame Game { get; set; }
+    public ISingleNumerGame Game { get; set; }
 
     [Inject]
     public IWalletCustomer Wallet { get; set; }
     private bool IsComplete;
 
     public int Bet { get; set; }
-    public string Color { get; set; } = "Black";
+    public string Number { get; set; } = "2";
     public int Balance { get; set; }
     public bool CanPlay { get; set; }
     public bool IHaveAnResult { get; set; }
@@ -58,7 +92,7 @@ else
 
     async Task IsMyLuckyDay()
     {
-        var result = await Game.IsMyLuckyDay(Color, Bet);
+        var result = await Game.IsMyLuckyDay(Number, Bet);
         if (result)
         {
             ResultAlert = "success";

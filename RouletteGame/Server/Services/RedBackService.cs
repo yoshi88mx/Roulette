@@ -19,6 +19,7 @@ public class RedBackService : IRedBlackGame
     }
     public async Task<bool> IsMyLuckyDay(string color, int bet)
     {
+        if (bet <= 0) throw new BetZeroException($"{nameof(BetZeroException)}");
         var moneyToSpent = await _walletCustomer.GetAvailable();
         if (bet <= moneyToSpent)
         {
@@ -30,7 +31,7 @@ public class RedBackService : IRedBlackGame
                 var isLucky = result.Color == colorConvertion;
                 if (isLucky)
                 {
-                    await _wallet.AddMoney(bet);
+                    await _wallet.AddMoney(bet * 2);
                 }
                 else
                 {

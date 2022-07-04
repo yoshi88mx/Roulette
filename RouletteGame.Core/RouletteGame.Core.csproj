@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RouletteGame\Shared\RouletteGame.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

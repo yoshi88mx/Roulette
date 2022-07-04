@@ -8,7 +8,6 @@ namespace RouletteGame.Core.Wallet;
 public interface IWalletCustomer
 {
     Task<int> GetAvailable();
-    Task<List<WalletHistory>> GetHistory();
     Task<bool> AddInitialMoney(int amonut);
     Task<bool> CanAddInitialMoney();
 }

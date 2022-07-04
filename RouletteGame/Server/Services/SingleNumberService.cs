@@ -5,19 +5,18 @@ using RouletteGame.Core.Wallet;
 
 namespace RouletteGame.Server.Services;
 
-public class EvenOddService : IOddEvenGame
+public class SingleNumberService : ISingleNumerGame
 {
     private readonly Wheel _wheel;
-    private readonly IWallet _wallet;
     private readonly IWalletCustomer _walletCustomer;
+    private readonly IWallet _wallet;
 
-    public EvenOddService(Wheel wheel, IWallet wallet, IWalletCustomer walletCustomer)
+    public SingleNumberService(Wheel wheel, IWalletCustomer walletCustomer, IWallet wallet )
     {
-        _wheel = wheel ?? throw new ArgumentNullException(nameof(wheel));
-        _wallet = wallet ?? throw new ArgumentNullException(nameof(wallet));
-        _walletCustomer = walletCustomer ?? throw new ArgumentNullException(nameof(walletCustomer));
+        _wheel = wheel;
+        _walletCustomer = walletCustomer;
+        _wallet = wallet;
     }
-
     public async Task<bool> IsMyLuckyDay(string number, int bet)
     {
         if (bet <= 0) throw new BetZeroException($"{nameof(BetZeroException)}");
@@ -30,7 +29,7 @@ public class EvenOddService : IOddEvenGame
                 var isLucky = result.Number == number;
                 if (isLucky)
                 {
-                    await _wallet.AddMoney(bet * 2);
+                    await _wallet.AddMoney(bet * Convert.ToInt32(number));
                 }
                 else
                 {

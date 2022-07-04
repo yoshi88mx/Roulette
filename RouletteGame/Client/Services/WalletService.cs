@@ -1,26 +1,42 @@
 ﻿using RouletteGame.Core.Wallet;
+using RouletteGame.Shared;
+using System.Net.Http.Json;
 
 namespace RouletteGame.Client.Services;
 
-public class WalletService : IWalletCustomer
+public class WalletService : IWalletCustomer, IWalletHistoryCustomer
 {
-    public Task<bool> AddInitialMoney(int amonut)
+    private readonly HttpClient _httpClient;
+
+    public WalletService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
+
+    public Task Add(WalletHistory history)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> CanAddInitialMoney()
+    public async Task<bool> AddInitialMoney(int amonut)
     {
-        throw new NotImplementedException();
+        var can = await CanAddInitialMoney();
+        if (can) await _httpClient.PostAsJsonAsync($"wallet?amount={amonut}", false);
+        return can;
     }
 
-    public Task<int> GetAvailable()
+    public async Task<bool> CanAddInitialMoney()
     {
-        throw new NotImplementedException();
+        return await _httpClient.GetFromJsonAsync<bool>("wallet/canadd");
     }
 
-    public Task<List<WalletHistory>> GetHistory()
+    public async Task<int> GetAvailable()
     {
-        throw new NotImplementedException();
+        return await _httpClient.GetFromJsonAsync<int>("wallet/balance");
+    }
+
+    public async Task<List<WalletHistoryDto>> GetHistory()
+    {
+        return await _httpClient.GetFromJsonAsync<List<WalletHistoryDto>>("wallet/balance") ?? new List<WalletHistoryDto>();
     }
 }
