@@ -1,0 +1,16 @@
+﻿@if(@Balance == 0)
+{
+    <label>Your Balance is: @Balance</label>
+    <br />
+    <label>You can't play</label>
+}
+else
+{
+    <label>Your Balance is: @Balance</label>
+    <br />
+}
+
+@code {
+    [Parameter]
+    public int Balance { get; set; }
+}

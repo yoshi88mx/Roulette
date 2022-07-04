@@ -13,7 +13,7 @@
 }
 else
 {
-   <label>Your Balance is: @Balance</label>
+   <BalanceDescription Balance=@Balance></BalanceDescription>
    <br />
    <label>Put your bet</label>
    <input class="form-control" type="number" max=@Balance min=1 step=1 @bind-value="BetInput"/>
@@ -80,13 +80,14 @@ else
             }
             IHaveAnResult = true;
             await UpdateBalance();
+            await CanIPlay();
             await InvokeAsync(StateHasChanged);
             
     }
 
     async Task CanIPlay()
     {
-        CanPlay = !(Balance > 0 && Bet < Balance && Bet > 0);
+        CanPlay = !(Balance > 0 && Bet <= Balance && Bet > 0);
         await InvokeAsync(StateHasChanged);
     }
 
