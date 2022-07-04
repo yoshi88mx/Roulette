@@ -2,16 +2,17 @@
 using RouletteGame.Core.Exceptions;
 using RouletteGame.Core.GamesContracts;
 using RouletteGame.Core.Wallet;
+using RouletteGame.Core.Wheel;
 
 namespace RouletteGame.Server.Services;
 
 public class RedBackService : IRedBlackGame
 {
-    private readonly Wheel _wheel;
+    private readonly IWheel _wheel;
     private readonly IWallet _wallet;
     private readonly IWalletCustomer _walletCustomer;
 
-    public RedBackService(Wheel wheel, IWallet wallet, IWalletCustomer walletCustomer)
+    public RedBackService(IWheel wheel, IWallet wallet, IWalletCustomer walletCustomer)
     {
         _wheel = wheel;
         _wallet = wallet;
