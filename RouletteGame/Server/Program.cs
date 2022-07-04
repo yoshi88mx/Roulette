@@ -13,12 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<IWheel,WheelService>();
 builder.Services.AddSingleton<IOddEvenGame, EvenOddService>();
 builder.Services.AddSingleton<IRedBlackGame, RedBackService>();
+builder.Services.AddSingleton<IOneTwoTree, OneTwoTreeService>();
+builder.Services.AddSingleton<ILowHighGame, LowHighService>();
 builder.Services.AddSingleton<ISingleNumerGame, SingleNumberService>();
 builder.Services.AddSingleton<IWallet, WalletService>();
 builder.Services.AddSingleton<IWalletCustomer, WalletCustomerService>();
 builder.Services.AddSingleton<IWalletHistoryCustomer, WalletHistoryCustomerService>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddControllersWithViews();
+builder.Services.AddSwaggerGen();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -38,6 +41,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapRazorPages();
 app.MapControllers();
