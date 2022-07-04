@@ -29,4 +29,53 @@ public class WheelShould
 
         Assert.True(numbers.Count == 38);
     }
+
+    [Fact]
+    public void GiveMe2Zeros()
+    {
+        var wheel = new WheelService();
+
+        var numbers = wheel.GetAllNumbers();
+
+        var singleZero = numbers.Any(t => t.Number == "0");
+        var doubleZero = numbers.Any(t => t.Number == "00");
+
+        Assert.True(singleZero & doubleZero);
+    }
+
+    [Fact]
+    public void BeGreenSingleZero()
+    {
+        var wheel = new WheelService();
+
+        var numbers = wheel.GetAllNumbers();
+
+        var singleZero = numbers.FirstOrDefault(t => t.Number == "0");
+
+        Assert.True(singleZero.Color == Core.WheelColor.Green);
+    }
+
+    [Fact]
+    public void BeGreenDoubleZero()
+    {
+        var wheel = new WheelService();
+
+        var numbers = wheel.GetAllNumbers();
+
+        var doubleZero = numbers.FirstOrDefault(t => t.Number == "00");
+
+        Assert.True(doubleZero.Color == Core.WheelColor.Green);
+    }
+
+    [Fact]
+    public void BeBlackAllOddNumbers() 
+    { 
+        var wheel = new WheelService();
+
+        var numbers = wheel.GetAllNumbers();
+
+        var odds = numbers.Where(t => t.IsOdd);
+
+        Assert.True(odds.All(t => t.Color == Core.WheelColor.Black));
+    }
 }
