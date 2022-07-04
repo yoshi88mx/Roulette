@@ -16,7 +16,7 @@ else
    <label>Your Balance is: @Balance</label>
    <br />
    <label>Put your bet</label>
-   <input class="form-control" type="number" max=@Balance min=1 step=1 @bind-value="Bet"/>
+   <input class="form-control" type="number" max=@Balance min=1 step=1 @bind-value="BetInput"/>
    <br />
    <label>Is Odd?</label>
    <select class="form-select" @bind="IsOdd">
@@ -41,7 +41,16 @@ else
     public IWalletCustomer Wallet { get; set; }
     private bool IsComplete;
 
-    public int Bet { get; set; }
+    public int Bet { get; set; } = 1;
+    public int BetInput
+    {
+        get { return Bet; }
+        set
+        {
+            Bet = value;
+            InvokeAsync(CanIPlay);
+        }
+    }
     public string IsOdd { get; set; } = "True";
     public int Balance { get; set; }
     public bool CanPlay { get; set; }
@@ -59,25 +68,25 @@ else
     async Task IsMyLuckyDay()
     {
         var result = await Game.IsMyLuckyDay(Convert.ToBoolean(IsOdd), Bet);
-        if (result)
-        {
-            ResultAlert = "success";
-            MessageAlert = "You Win";
-        }
-        else
-        {
-            ResultAlert = "danger";
-            MessageAlert = "You Lose";
-        }
-        IHaveAnResult = true;
-        await UpdateBalance();
-        await InvokeAsync(StateHasChanged);
+            if (result)
+            {
+                ResultAlert = "success";
+                MessageAlert = "You Win";
+            }
+            else
+            {
+                ResultAlert = "danger";
+                MessageAlert = "You Lose";
+            }
+            IHaveAnResult = true;
+            await UpdateBalance();
+            await InvokeAsync(StateHasChanged);
     }
 
     async Task CanIPlay()
     {
-        CanPlay = !(Balance > 0 && Bet < Balance);
-        await Task.FromResult(true);
+        CanPlay = !(Balance > 0 && Bet < Balance && Bet > 0);
+        await InvokeAsync(StateHasChanged);
     }
 
     async Task UpdateBalance()
