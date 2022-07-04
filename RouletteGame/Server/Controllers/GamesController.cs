@@ -6,17 +6,25 @@ namespace RouletteGame.Server.Controllers;
 
 [ApiController]
 [Route("api/v1/games/")]
-public class GameController : ControllerBase
+public class GamesController : ControllerBase
 {
     private readonly IOddEvenGame _evenOddService;
     private readonly IRedBlackGame _redBackService;
     private readonly ISingleNumerGame _singleNumberService;
+    private readonly IOneTwoTree _oneTwoTreeService;
+    private readonly ILowHighGame _lowHighGameService;
 
-    public GameController(IOddEvenGame evenOddService, IRedBlackGame redBackService, ISingleNumerGame singleNumberService)
+    public GamesController(IOddEvenGame evenOddService,
+                           IRedBlackGame redBackService,
+                           ISingleNumerGame singleNumberService,
+                           IOneTwoTree oneTwoTreeService,
+                           ILowHighGame lowHighGameService)
     {
         _evenOddService = evenOddService;
         _redBackService = redBackService;
         _singleNumberService = singleNumberService;
+        _oneTwoTreeService = oneTwoTreeService;
+        _lowHighGameService = lowHighGameService;
     }
 
     [HttpGet]
@@ -38,5 +46,19 @@ public class GameController : ControllerBase
     public async Task<ActionResult<bool>> SingleNumerGame([FromQuery] string number, [FromQuery] int bet)
     {
         return await _singleNumberService.IsMyLuckyDay(number, bet);
+    }
+
+    [HttpGet]
+    [Route("onetwotree")]
+    public async Task<ActionResult<bool>> OneTwoTreeGame([FromQuery] int bet)
+    {
+        return await _oneTwoTreeService.IsMyLuckyDay(bet);
+    }
+
+    [HttpGet]
+    [Route("lowhigh")]
+    public async Task<ActionResult<bool>> LowHighGame([FromQuery] int bet)
+    {
+        return await _lowHighGameService.IsMyLuckyDay(bet);
     }
 }
