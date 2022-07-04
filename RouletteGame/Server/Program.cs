@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.ResponseCompression;
 using RouletteGame.Core;
+using RouletteGame.Core.GamesContracts;
 using RouletteGame.Core.Wallet;
 using RouletteGame.Core.Wheel;
 using RouletteGame.Server.Middleware;
@@ -10,9 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddSingleton<IWheel,WheelService>();
-builder.Services.AddSingleton<EvenOddService>();
-builder.Services.AddSingleton<RedBackService>();
-builder.Services.AddSingleton<SingleNumberService>();
+builder.Services.AddSingleton<IOddEvenGame, EvenOddService>();
+builder.Services.AddSingleton<IRedBlackGame, RedBackService>();
+builder.Services.AddSingleton<ISingleNumerGame, SingleNumberService>();
 builder.Services.AddSingleton<IWallet, WalletService>();
 builder.Services.AddSingleton<IWalletCustomer, WalletCustomerService>();
 builder.Services.AddSingleton<IWalletHistoryCustomer, WalletHistoryCustomerService>();

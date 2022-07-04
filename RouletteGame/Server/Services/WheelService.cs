@@ -56,7 +56,7 @@ public class WheelService: IWheel
     {
         var random = new Random();
 
-        var position = Enumerable.Range(0, 35)
+        var position = Enumerable.Range(0, 37)
             .OrderBy(i => random.Next())
             .First();
 

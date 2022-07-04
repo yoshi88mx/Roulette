@@ -1,5 +1,4 @@
-﻿using RouletteGame.Core;
-using RouletteGame.Core.Exceptions;
+﻿using RouletteGame.Core.Exceptions;
 using RouletteGame.Core.GamesContracts;
 using RouletteGame.Core.Wallet;
 using RouletteGame.Core.Wheel;

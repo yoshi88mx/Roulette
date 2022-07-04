@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RouletteGame.Core.GamesContracts;
 using RouletteGame.Server.Services;
 
 namespace RouletteGame.Server.Controllers;
@@ -7,11 +8,11 @@ namespace RouletteGame.Server.Controllers;
 [Route("api/v1/games/")]
 public class GameController : ControllerBase
 {
-    private readonly EvenOddService _evenOddService;
-    private readonly RedBackService _redBackService;
-    private readonly SingleNumberService _singleNumberService;
+    private readonly IOddEvenGame _evenOddService;
+    private readonly IRedBlackGame _redBackService;
+    private readonly ISingleNumerGame _singleNumberService;
 
-    public GameController(EvenOddService evenOddService, RedBackService redBackService, SingleNumberService singleNumberService)
+    public GameController(IOddEvenGame evenOddService, IRedBlackGame redBackService, ISingleNumerGame singleNumberService)
     {
         _evenOddService = evenOddService;
         _redBackService = redBackService;
