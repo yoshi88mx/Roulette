@@ -4,7 +4,7 @@ using RouletteGame.Shared;
 
 namespace RouletteGame.Server.Services;
 
-public class WalletHistoryCustomerService: IWalletHistoryCustomer
+public class WalletHistoryCustomerService : IWalletHistoryCustomer
 {
     private List<WalletHistory> History { get; set; }
     private readonly IMapper _mapper;

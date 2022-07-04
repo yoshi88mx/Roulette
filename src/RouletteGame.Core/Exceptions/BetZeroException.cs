@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RouletteGame.Core.Exceptions;
-public class BetZeroException: Exception
+public class BetZeroException : Exception
 {
-    public BetZeroException(string messge):base(messge)
+    public BetZeroException(string messge) : base(messge)
     {
 
     }

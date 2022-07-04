@@ -23,7 +23,7 @@ public class WalletService : IWallet
     public async Task AddMoney(int mount)
     {
         Total = Total + mount;
-        await _walletHistory.Add(new WalletHistory { Amonut = mount, IsPositive = true});
+        await _walletHistory.Add(new WalletHistory { Amonut = mount, IsPositive = true });
         _logger.LogInformation($"{nameof(AddMoney)} : {mount}");
         await Task.FromResult(true);
     }

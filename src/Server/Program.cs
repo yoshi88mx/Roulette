@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddSingleton<IWheel,WheelService>();
+builder.Services.AddSingleton<IWheel, WheelService>();
 builder.Services.AddSingleton<IOddEvenGame, EvenOddService>();
 builder.Services.AddSingleton<IRedBlackGame, RedBackService>();
 builder.Services.AddSingleton<IOneTwoTree, OneTwoTreeService>();

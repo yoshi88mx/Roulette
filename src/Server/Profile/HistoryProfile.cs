@@ -4,7 +4,7 @@ using RouletteGame.Shared;
 
 namespace RouletteGame.Server.Profile;
 
-public class HistoryProfile: AutoMapper.Profile
+public class HistoryProfile : AutoMapper.Profile
 {
     public HistoryProfile()
     {

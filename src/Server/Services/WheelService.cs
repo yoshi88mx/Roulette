@@ -3,7 +3,7 @@ using RouletteGame.Core.Wheel;
 
 namespace RouletteGame.Server.Services;
 
-public class WheelService: IWheel
+public class WheelService : IWheel
 {
     private List<WheelNumber> Numbers { get; set; }
     public WheelService()

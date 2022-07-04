@@ -68,8 +68,8 @@ public class WheelShould
     }
 
     [Fact]
-    public void BeBlackAllOddNumbers() 
-    { 
+    public void BeBlackAllOddNumbers()
+    {
         var wheel = new WheelService();
 
         var numbers = wheel.GetAllNumbers();

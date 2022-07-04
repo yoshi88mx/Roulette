@@ -33,14 +33,14 @@ public class WalletShould
         var InitialTotal = _wallet.Total;
 
         await _wallet.AddMoney(amount);
-        
+
         Assert.Equal(InitialTotal + amount, _wallet.Total);
     }
 
     [Theory]
-    [InlineData(100,10)]
-    [InlineData(40,20)]
-    [InlineData(11000,10000)]
+    [InlineData(100, 10)]
+    [InlineData(40, 20)]
+    [InlineData(11000, 10000)]
     public async void CanRemoveMoney(int initialValue, int amount)
     {
         _wallet.Total = initialValue;

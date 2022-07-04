@@ -46,7 +46,7 @@ public class SingleNumberGameShould
     {
         _mockWalletCustomer.Setup(t => t.GetAvailable()).Returns(Task.FromResult(10));
         _mockWhell.Setup(t => t.GiveMeANumber()).Returns(new WheelNumber { Color = WheelColor.Red, Number = "2", IsOdd = true });
-        _mockWhell.Setup(t => t.GetAllNumbers()).Returns(new List<WheelNumber>(){ new WheelNumber { Color = WheelColor.Red, Number = "5", IsOdd = true }});
+        _mockWhell.Setup(t => t.GetAllNumbers()).Returns(new List<WheelNumber>() { new WheelNumber { Color = WheelColor.Red, Number = "5", IsOdd = true } });
         var game = new SingleNumberService(_mockWhell.Object, _mockWalletCustomer.Object, _mockWallet.Object);
         Assert.False(await game.IsMyLuckyDay("5", 10));
     }

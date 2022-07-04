@@ -12,7 +12,7 @@ public class SingleNumberService : ISingleNumerGame
     private readonly IWalletCustomer _walletCustomer;
     private readonly IWallet _wallet;
 
-    public SingleNumberService(IWheel wheel, IWalletCustomer walletCustomer, IWallet wallet )
+    public SingleNumberService(IWheel wheel, IWalletCustomer walletCustomer, IWallet wallet)
     {
         _wheel = wheel;
         _walletCustomer = walletCustomer;

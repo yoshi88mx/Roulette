@@ -1,6 +1,6 @@
-﻿using RouletteGame.Core.Wallet;
+﻿using System.Net.Http.Json;
+using RouletteGame.Core.Wallet;
 using RouletteGame.Shared;
-using System.Net.Http.Json;
 
 namespace RouletteGame.Client.Services;
 

@@ -27,7 +27,7 @@ public class WalletCustomerShould
         var mapper = new Mapper(configuration);
         _mockWalletHistory = new WalletHistoryCustomerService(mapper);
         _mockWallet = new WalletService(mockLogger.Object, mapper, _mockWalletHistory);
-        
+
     }
 
     [Theory]
