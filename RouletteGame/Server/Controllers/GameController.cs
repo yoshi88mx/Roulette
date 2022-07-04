@@ -20,9 +20,9 @@ public class GameController : ControllerBase
 
     [HttpGet]
     [Route("EvenOdd")]
-    public async Task<ActionResult<bool>> EvenOddGame([FromQuery] string number, [FromQuery] int bet)
+    public async Task<ActionResult<bool>> EvenOddGame([FromQuery] bool isOdd, [FromQuery] int bet)
     {
-        return await _evenOddService.IsMyLuckyDay(number, bet);
+        return await _evenOddService.IsMyLuckyDay(isOdd, bet);
     }
 
     [HttpGet]

@@ -11,8 +11,8 @@ public class OddEvenGameService : IOddEvenGame
     {
         _httpClient = httpClient;
     }
-    public async Task<bool> IsMyLuckyDay(string number, int bet)
+    public async Task<bool> IsMyLuckyDay(bool isOdd, int bet)
     {
-        return await _httpClient.GetFromJsonAsync<bool>($"games/evenodd?number={number}&bet={bet}");
+        return await _httpClient.GetFromJsonAsync<bool>($"games/evenodd?isOdd={isOdd}&bet={bet}");
     }
 }

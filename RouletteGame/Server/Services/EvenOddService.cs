@@ -18,28 +18,23 @@ public class EvenOddService : IOddEvenGame
         _walletCustomer = walletCustomer ?? throw new ArgumentNullException(nameof(walletCustomer));
     }
 
-    public async Task<bool> IsMyLuckyDay(string number, int bet)
+    public async Task<bool> IsMyLuckyDay(bool isOdd, int bet)
     {
         if (bet <= 0) throw new BetZeroException($"{nameof(BetZeroException)}");
-        var canPlay = _wheel.Numbers.Any(t => t.Number == number);
-        if (canPlay)
+        if (bet <= await _walletCustomer.GetAvailable())
         {
-            if (bet <= await _walletCustomer.GetAvailable())
+            var result = _wheel.GiveMeANumber();
+            var isLucky = result.IsOdd == isOdd;
+            if (isLucky)
             {
-                var result = _wheel.GiveMeANumber();
-                var isLucky = result.Number == number;
-                if (isLucky)
-                {
-                    await _wallet.AddMoney(bet * 2);
-                }
-                else
-                {
-                    await _wallet.RemoveMoney(bet);
-                }
-                return await Task.FromResult(isLucky);
+                await _wallet.AddMoney(bet * 2);
             }
-            throw new NotEnoughMoneyException($"{nameof(NotEnoughMoneyException)}: Balance { await _walletCustomer.GetAvailable() }");
+            else
+            {
+                await _wallet.RemoveMoney(bet);
+            }
+            return await Task.FromResult(isLucky);
         }
-        throw new IsNotANumberAllowedException($"{nameof(IsNotANumberAllowedException)}: {number}");
+        throw new NotEnoughMoneyException($"{nameof(NotEnoughMoneyException)}: Balance { await _walletCustomer.GetAvailable() }");
     }
 }

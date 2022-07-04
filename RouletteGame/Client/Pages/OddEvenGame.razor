@@ -18,44 +18,10 @@ else
    <label>Put your bet</label>
    <input class="form-control" type="number" max=@Balance min=1 step=1 @bind-value="Bet"/>
    <br />
-   <label>Choose your Number</label>
-   <select class="form-select" @bind="Number">
-       <option>2</option>
-       <option>3</option>
-       <option>4</option>
-       <option>5</option>
-       <option>6</option>
-       <option>7</option>
-       <option>8</option>
-       <option>9</option>
-       <option>10</option>
-       <option>11</option>
-       <option>12</option>
-       <option>13</option>
-       <option>14</option>
-       <option>15</option>
-       <option>16</option>
-       <option>17</option>
-       <option>18</option>
-       <option>19</option>
-       <option>20</option>
-       <option>21</option>
-       <option>22</option>
-       <option>23</option>
-       <option>24</option>
-       <option>25</option>
-       <option>26</option>
-       <option>27</option>
-       <option>28</option>
-       <option>29</option>
-       <option>30</option>
-       <option>31</option>
-       <option>32</option>
-       <option>33</option>
-       <option>34</option>
-       <option>35</option>
-       <option>36</option>
-
+   <label>Is Odd?</label>
+   <select class="form-select" @bind="IsOdd">
+       <option>True</option>
+       <option>False</option>
    </select>
    <br />
    <button class="btn btn-primary" @onclick="IsMyLuckyDay" disabled="@CanPlay">Play</button>
@@ -76,7 +42,7 @@ else
     private bool IsComplete;
 
     public int Bet { get; set; }
-    public string Number { get; set; } = "2";
+    public string IsOdd { get; set; } = "True";
     public int Balance { get; set; }
     public bool CanPlay { get; set; }
     public bool IHaveAnResult { get; set; }
@@ -92,7 +58,7 @@ else
 
     async Task IsMyLuckyDay()
     {
-        var result = await Game.IsMyLuckyDay(Number, Bet);
+        var result = await Game.IsMyLuckyDay(Convert.ToBoolean(IsOdd), Bet);
         if (result)
         {
             ResultAlert = "success";

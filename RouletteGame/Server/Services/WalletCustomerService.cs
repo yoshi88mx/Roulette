@@ -1,5 +1,6 @@
 ﻿using RouletteGame.Core.Exceptions;
 using RouletteGame.Core.Wallet;
+using RouletteGame.Shared;
 
 namespace RouletteGame.Server.Services;
 
@@ -26,7 +27,7 @@ public class WalletCustomerService : IWalletCustomer
 
     public async Task<bool> CanAddInitialMoney()
     {
-        var history = await _walletHistoryCustomer.GetHistory();
+        var history = await _walletHistoryCustomer.GetHistory() ?? new List<WalletHistoryDto>();
         if (history.Any())
         {
             return await Task.FromResult(false);
